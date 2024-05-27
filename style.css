@@ -263,21 +263,12 @@ header {
   text-align: center;
   font-weight: 700;
   color: #00f000;
-  text-shadow: 
-    0 1px 0 #00ff00, 
-    0 2px 0 #00ff00, 
-    0 3px 0 #00ff00, 
-    0 4px 0 #00ff00,
-    0 5px 0 #00ff00, 
-    0 6px 1px rgba(0, 255, 0, 0.1),
-    0 0 5px rgba(0, 255, 0, 0.1), 
-    0 1px 3px rgba(0, 255, 0, 0.3),
-    0 3px 5px rgba(0, 255, 0, 0.2), 
-    0 5px 10px rgba(0, 255, 0, 0.25),
-    0 10px 10px rgba(0, 255, 0, 0.2), 
-    0 20px 20px rgba(0, 255, 0, 0.15);
+  text-shadow: 0 1px 0 #00ff00, 0 2px 0 #00ff00, 0 3px 0 #00ff00,
+    0 4px 0 #00ff00, 0 5px 0 #00ff00, 0 6px 1px rgba(0, 255, 0, 0.1),
+    0 0 5px rgba(0, 255, 0, 0.1), 0 1px 3px rgba(0, 255, 0, 0.3),
+    0 3px 5px rgba(0, 255, 0, 0.2), 0 5px 10px rgba(0, 255, 0, 0.25),
+    0 10px 10px rgba(0, 255, 0, 0.2), 0 20px 20px rgba(0, 255, 0, 0.15);
 }
-
 
 .title-1 {
   padding: 20px;
@@ -415,5 +406,16 @@ header {
   }
   50% {
     opacity: 1;
+  }
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50vh) scale(0);
+    opacity: 0;
   }
 }

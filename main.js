@@ -13,74 +13,49 @@ window.addEventListener("resize", () => {
   }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  const particleContainer = document.querySelector('.hero');
-  const particleSizeRange = [10, 30];
-  const animationDurationRange = [5000, 8000];
-  const speed = 10;
-  const reductionRate = 0.06;
+document.addEventListener("DOMContentLoaded", function () {
+  const particleContainer = document.querySelector(".hero");
+  const particleSizeRange = [30, 60];
+  const animationDurationRange = [5, 8]; // Duración en segundos
   const maxParticles = 50;
-
-  let lastGeneratedTime = performance.now();
+  const particleInterval = 200; // Intervalo en milisegundos entre lanzamientos de partículas
 
   function createParticle() {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      const size = Math.random() * (particleSizeRange[1] - particleSizeRange[0]) + particleSizeRange[0];
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      particle.style.left = `${Math.random() * window.innerWidth}px`;
-      particle.style.top = `${window.innerHeight}px`;
-      particleContainer.appendChild(particle);
+    if (particleContainer.childElementCount >= maxParticles) {
+      return;
+    }
 
-      const duration = Math.random() * (animationDurationRange[1] - animationDurationRange[0]) + animationDurationRange[0];
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
 
-      let distance = 0;
-      let newSize = size;
+    const size =
+      Math.random() * (particleSizeRange[1] - particleSizeRange[0]) +
+      particleSizeRange[0];
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${Math.random() * window.innerWidth}px`;
+    particle.style.top = `${window.innerHeight}px`;
 
-      function moveParticle() {
-          distance += speed / 60;
-          particle.style.top = `${parseInt(particle.style.top) - speed / 60}px`;
+    const duration =
+      Math.random() * (animationDurationRange[1] - animationDurationRange[0]) +
+      animationDurationRange[0];
+    particle.style.animationDuration = `${duration}s`;
 
-          newSize -= reductionRate;
-          if (parseInt(particle.style.top) < window.innerHeight / 2) {
-              newSize = 1;
-          }
+    particleContainer.appendChild(particle);
 
-          if (parseInt(particle.style.top) < window.innerHeight / 6) {
-              particle.remove();
-              return;
-          }
-
-          if (newSize <= 1) {
-              particle.remove();
-              return;
-          }
-
-          particle.style.width = `${newSize}px`;
-          particle.style.height = `${newSize}px`;
-
-          requestAnimationFrame(moveParticle);
-      }
-
-      requestAnimationFrame(moveParticle);
+    particle.addEventListener("animationend", () => {
+      particle.remove();
+    });
   }
 
   function generateParticles() {
-      const currentTime = performance.now();
-      const elapsedTime = currentTime - lastGeneratedTime;
-
-      if (elapsedTime > 50 && particleContainer.childElementCount < maxParticles) {
-          createParticle();
-          lastGeneratedTime = currentTime;
-      }
-
-      requestAnimationFrame(generateParticles);
+    setInterval(() => {
+      createParticle();
+    }, particleInterval);
   }
 
   generateParticles();
 });
-
 
 window.addEventListener("load", () => {
   var windowWidth = window.innerWidth;
