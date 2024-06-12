@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio de Efren Guerrero, un desarrollador Front-End y diseñador web."
+    />
+    <meta
+      name="keywords"
+      content="Efren Guerrero, Portfolio, Front-End, Desarrollo web, Diseño web"
+    />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="icons/font/bootstrap-icons.min.css" />
     <title>Efren Guerrero | Portfolio</title>
@@ -10,39 +18,54 @@
   <body>
     <header>
       <div class="container">
-        <nav class="main-navigation">
-          <a href="#" class="logo"
-            ><img src="img/logo_ollioz.svg" alt="logo ollioz"
-          /></a>
-          <section class="all-links-nav desktop">
-            <ul class="links-no-icons">
-              <li><a href="#">Inicio</a></li>
-              <li><a href="#">Sobre mi</a></li>
-              <li><a href="#">Proyectos</a></li>
-              <li><a href="#">Servicios</a></li>
+        <nav class="navigation">
+          <a class="logo-link" href="#">
+            <img
+              src="docs/img/logo_ollioz.svg"
+              alt="logo ollioz programador Front-End"
+            />
+          </a>
+          <section class="other-links">
+            <ul class="principal-links">
+              <li>
+                <a href="#">Inicio <i class="bi bi-house"></i></a>
+              </li>
+              <li>
+                <a href="#">Sobre mí <i class="bi bi-person-circle"></i></a>
+              </li>
+              <li>
+                <a href="#"
+                  >Proyectos <i class="bi bi-clipboard2-check-fill"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#">Servicios <i class="bi bi-hammer"></i></a>
+              </li>
             </ul>
-
-            <p>|</p>
-
-            <ul class="links-with-icons">
+            <ul class="social-links">
               <li>
-                <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                <a href="#" aria-label="LinkedIn">
+                  <i class="bi bi-linkedin"></i>
+                </a>
               </li>
               <li>
-                <a href="#" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" aria-label="Twitter">
+                  <i class="bi bi-twitter-x"></i>
+                </a>
               </li>
               <li>
-                <a href="#" target="_blank"><i class="bi bi-github"></i></a>
+                <a href="#" aria-label="GitHub">
+                  <i class="bi bi-github"></i>
+                </a>
               </li>
             </ul>
           </section>
-          <button class="button-mobile"><i class="bi bi-list"></i></button>
         </nav>
       </div>
     </header>
 
     <section class="hero">
-      <img src="img/programador.jpg" />
+      <video src="docs/video/programador.mp4" autoplay loop muted></video>
       <div class="container-hero">
         <div class="container">
           <p class="another-text-hero">
@@ -59,7 +82,7 @@
     <section class="articles">
       <div class="container">
         <article class="article-1">
-          <h1 class="title title-1">Sobre mi</h1>
+          <h1 class="title title-1">Sobre mí</h1>
           <hr />
           <div class="text-and-image">
             <div class="text-abt-me">
@@ -69,10 +92,11 @@
                 perfeccionista en cada proyecto. Desde alrededor de los 5 años,
                 he sentido una fascinación innata por la tecnología, lo que me
                 ha llevado a dedicar mi carrera a la creación de experiencias
-                web excepcionales.
+                web excepcionales. ¡Bienvenido a mi portafolio y espero
+                encontrarnos en un futuro proyecto!
               </p>
             </div>
-            <img src="img/interface.svg" />
+            <img src="docs/img/interface.svg" alt="Interfaz de usuario" />
           </div>
         </article>
         <article class="article-2">

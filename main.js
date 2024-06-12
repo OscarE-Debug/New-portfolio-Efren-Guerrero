@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const particleContainer = document.querySelector('.hero');
+document.addEventListener("DOMContentLoaded", function () {
+  const particleContainer = document.querySelector(".hero");
   const particleSizeRange = [30, 60];
   const animationDurationRange = [5, 8];
   const maxParticles = 50;
@@ -8,98 +8,70 @@ document.addEventListener('DOMContentLoaded', function () {
   let windowHeight = window.innerHeight;
 
   function createParticle() {
-      if (particleContainer.childElementCount >= maxParticles) {
-          return;
-      }
+    if (particleContainer.childElementCount >= maxParticles) {
+      return;
+    }
 
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
 
-      const size = Math.random() * (particleSizeRange[1] - particleSizeRange[0]) + particleSizeRange[0];
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      particle.style.left = `${Math.random() * windowWidth}px`;
-      particle.style.top = `${windowHeight}px`;
+    const size =
+      Math.random() * (particleSizeRange[1] - particleSizeRange[0]) +
+      particleSizeRange[0];
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${Math.random() * windowWidth}px`;
+    particle.style.top = `${windowHeight}px`;
 
-      const duration = Math.random() * (animationDurationRange[1] - animationDurationRange[0]) + animationDurationRange[0];
-      particle.style.animationDuration = `${duration}s`;
+    const duration =
+      Math.random() * (animationDurationRange[1] - animationDurationRange[0]) +
+      animationDurationRange[0];
+    particle.style.animationDuration = `${duration}s`;
 
-      particleContainer.appendChild(particle);
+    particleContainer.appendChild(particle);
 
-      particle.addEventListener('animationend', () => {
-          particle.remove();
-      });
+    particle.addEventListener("animationend", () => {
+      particle.remove();
+    });
   }
 
   function generateParticles() {
-      setInterval(createParticle, particleInterval);
+    setInterval(createParticle, particleInterval);
   }
 
   function adjustParticles() {
-      const newWindowWidth = window.innerWidth;
-      const newWindowHeight = window.innerHeight;
-      const widthRatio = newWindowWidth / windowWidth;
-      const heightRatio = newWindowHeight / windowHeight;
+    const newWindowWidth = window.innerWidth;
+    const newWindowHeight = window.innerHeight;
+    const widthRatio = newWindowWidth / windowWidth;
+    const heightRatio = newWindowHeight / windowHeight;
 
-      const particles = document.querySelectorAll('.particle');
-      particles.forEach((particle) => {
-          const left = parseFloat(particle.style.left);
-          const top = parseFloat(particle.style.top);
+    const particles = document.querySelectorAll(".particle");
+    particles.forEach((particle) => {
+      const left = parseFloat(particle.style.left);
+      const top = parseFloat(particle.style.top);
 
-          particle.style.left = `${left * widthRatio}px`;
-          particle.style.top = `${top * heightRatio}px`;
-      });
+      particle.style.left = `${left * widthRatio}px`;
+      particle.style.top = `${top * heightRatio}px`;
+    });
 
-      windowWidth = newWindowWidth;
-      windowHeight = newWindowHeight;
+    windowWidth = newWindowWidth;
+    windowHeight = newWindowHeight;
   }
 
-  window.addEventListener('resize', adjustParticles);
+  window.addEventListener("resize", adjustParticles);
 
   generateParticles();
 });
 
-let navigation = document.querySelector('.all-links-nav');
-let buttonMobile = document.querySelector('.button-mobile');
-
-function toggleMobileNav() {
-  if (!navigation.classList.contains('active')) {
-      navigation.classList.add('active');
-  } else {
-      navigation.classList.add('removing-active');
-      setTimeout(() => {
-          navigation.classList.remove('active');
-          navigation.classList.remove('removing-active');
-      }, 1000);
-  }
-}
-
-function checkWindowSize() {
-  var windowWidth = window.innerWidth;
-  if (windowWidth <= 710) {
-      navigation.classList.add('mobile');
-      buttonMobile.classList.add('active');
-  } else {
-      navigation.classList.remove('mobile');
-      navigation.classList.remove('active');
-      buttonMobile.classList.remove('active');
-  }
-}
-
-window.addEventListener('resize', checkWindowSize);
-window.addEventListener('load', checkWindowSize);
-
-buttonMobile.addEventListener('click', toggleMobileNav);
-
 function typeWriter(text, i, id) {
   if (i < text.length) {
-      document.getElementById(id).innerHTML += text.charAt(i);
-      i++;
-      setTimeout(function () {
-          typeWriter(text, i, id);
-      }, 150);
+    document.getElementById(id).innerHTML += text.charAt(i);
+    i++;
+    setTimeout(function () {
+      typeWriter(text, i, id);
+    }, 150);
   }
 }
 
-var text = 'Diseñador web';
-typeWriter(text, 0, 'typing-text');
+var text = "Diseñador web";
+typeWriter(text, 0, "typing-text");
