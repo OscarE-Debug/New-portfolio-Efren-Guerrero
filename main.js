@@ -75,3 +75,98 @@ function typeWriter(text, i, id) {
 
 var text = "Diseñador web";
 typeWriter(text, 0, "typing-text");
+
+let angle = 0;
+let startX = 0;
+let isDragging = false;
+let velocity = 0;
+let lastX = 0;
+let lastTime = 0;
+let momentumId;
+
+const items = document.querySelectorAll(".carousel-item");
+const totalItems = items.length;
+const rotateAngle = 360 / totalItems;
+const translateZDistance = 400;
+
+function updateCarousel() {
+  items.forEach((item, index) => {
+    const itemAngle = angle + index * rotateAngle;
+    item.style.transform = `rotateY(${itemAngle}deg) translateZ(${translateZDistance}px)`;
+
+    const zIndex = Math.cos((itemAngle % 360) * (Math.PI / 180));
+    item.style.zIndex = Math.round(zIndex * 100);
+  });
+}
+
+function animate() {
+  if (!isDragging) {
+    angle += velocity;
+    velocity *= 0.95;
+    updateCarousel();
+    if (Math.abs(velocity) > 0.01) {
+      momentumId = requestAnimationFrame(animate);
+    } else {
+      snapToNearest();
+    }
+  }
+}
+
+function snapToNearest() {
+  const nearestAngle = Math.round(angle / rotateAngle) * rotateAngle;
+  const difference = nearestAngle - angle;
+
+  if (Math.abs(difference) > 0.01) {
+    velocity = difference / 10;
+    angle += velocity;
+    updateCarousel();
+    requestAnimationFrame(snapToNearest);
+  }
+}
+
+function startDragging(event) {
+  startX = event.clientX || event.touches[0].clientX;
+  lastX = startX;
+  lastTime = Date.now();
+  isDragging = true;
+  velocity = 0;
+  cancelAnimationFrame(momentumId);
+  event.preventDefault();
+}
+
+function onMove(event) {
+  if (isDragging) {
+    const currentX = event.clientX || event.touches[0].clientX;
+    const deltaX = currentX - lastX;
+    const currentTime = Date.now();
+    const deltaTime = currentTime - lastTime;
+
+    velocity = deltaX / deltaTime;
+
+    angle += deltaX / 5;
+    lastX = currentX;
+    lastTime = currentTime;
+    updateCarousel();
+  }
+}
+
+function stopDragging() {
+  if (isDragging) {
+    isDragging = false;
+    requestAnimationFrame(animate);
+  }
+}
+
+const carousel = document.querySelector(".carousel");
+
+carousel.addEventListener("mousedown", startDragging);
+document.addEventListener("mousemove", onMove);
+document.addEventListener("mouseup", stopDragging);
+carousel.addEventListener("mouseleave", stopDragging);
+
+carousel.addEventListener("touchstart", startDragging);
+document.addEventListener("touchmove", onMove);
+document.addEventListener("touchend", stopDragging);
+carousel.addEventListener("touchcancel", stopDragging);
+
+updateCarousel();

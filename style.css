@@ -19,7 +19,7 @@ header {
 
 .navigation {
   display: flex;
-  flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
@@ -32,31 +32,32 @@ header {
 
 .other-links {
   display: flex;
-  flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end; /* Justificar a la derecha en pantallas grandes */
+  justify-content: flex-end;
   width: auto;
 }
 
 .principal-links,
 .social-links {
   display: flex;
-  flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+  flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
-  justify-content: center; /* Centramos los enlaces dentro de las listas */
+  justify-content: center;
+  align-items: center; /* Asegurar que los enlaces estén alineados verticalmente */
 }
 
 .principal-links {
-  margin-right: 20px; /* Separación entre los enlaces principales y los de redes sociales */
-  border-right: 1px solid #ccc; /* Borde derecho para los enlaces principales */
-  padding-right: 20px; /* Espacio para el borde */
+  margin-right: 20px;
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
 }
 
 .principal-links li,
 .social-links li {
-  margin: 10px 20px; /* Ajustamos el margen para separar los elementos */
+  margin: 10px 20px;
 }
 
 .principal-links a,
@@ -78,7 +79,7 @@ header {
   margin-left: 5px;
 }
 
-/*! HERO */
+/* HERO */
 
 .hero {
   width: 100%;
@@ -98,7 +99,7 @@ header {
 
 .hero video {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   object-fit: cover;
   position: fixed;
   top: 0;
@@ -135,22 +136,18 @@ header {
   font-weight: 200;
 }
 
-.another-text-hero {
-  font-weight: 300;
+.text-hero {
+  font-weight: 400;
   font-size: 1.5rem;
   padding: 15px;
+  color: #ffffff;
 }
 
-.another-text-hero b {
+.text-hero b {
   font-weight: 600;
 }
 
-.abt-hero {
-  padding: 20px;
-  font-size: 1.15rem;
-}
-
-/*! ARTICLES */
+/* ARTICLES */
 
 .articles {
   background-color: rgb(22, 22, 22);
@@ -158,8 +155,12 @@ header {
 }
 
 .article-1 {
-  color: #e7e7e7;
   padding: 10px;
+}
+
+.text {
+  color: #e7e7e7;
+  padding: 20px;
 }
 
 .title {
@@ -178,7 +179,7 @@ header {
   padding: 20px;
 }
 
-.article-1 hr {
+hr {
   border: 0;
   height: 2px;
   background-image: linear-gradient(
@@ -213,7 +214,136 @@ header {
   padding: 20px;
 }
 
-/*! MEDIA QUERIES */
+/* CAROUSEL */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 40px auto;
+  perspective: 1500px;
+  cursor: grab;
+}
+
+.carousel:active {
+  cursor: grabbing;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+  transform-origin: center;
+  transition: transform 0.1s, z-index 0.1s;
+  user-select: none;
+}
+
+.carousel-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(17, 3, 45);
+  border: 1px solid #000000;
+  border-radius: 13px;
+  margin: 10px 0px;
+}
+
+.description p {
+  padding: 10px;
+  color: #ffffff; /* Texto blanco para mejor contraste */
+}
+
+.description button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #00cc66; /* Verde más suave */
+  border: 1px solid #00ff00; /* Borde verde brillante */
+  border-radius: 5px;
+  color: #ffffff; /* Texto blanco */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  touch-action: manipulation; /* Mejora la respuesta táctil */
+}
+
+.description button:hover {
+  background-color: #00994d; /* Verde oscuro en hover */
+  transform: scale(1.1);
+  box-shadow: 0px 4px 15px rgba(0, 255, 0, 0.6); /* Sombra verde brillante */
+}
+
+.description button:active {
+  background-color: #007a39; /* Verde aún más oscuro en active */
+  transform: scale(1.05);
+  box-shadow: 0px 2px 10px rgba(0, 255, 0, 0.4); /* Sombra menos intensa */
+}
+
+@media (max-width: 600px) {
+  .carousel {
+    height: 300px;
+  }
+
+  .carousel-item {
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+  }
+
+  .description button {
+    width: 80%;
+    padding: 15px 20px;
+  }
+
+  .description button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Description carousel */
+
+.description-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.description-carousel img {
+  width: 50%;
+  flex-shrink: 0;
+}
+
+.description-carousel .text {
+  flex-grow: 0;
+  flex-shrink: 1;
+  width: 40%;
+}
+
+/* Media queries */
 
 @media (max-width: 768px) {
   .navigation {
@@ -236,7 +366,7 @@ header {
   }
 }
 
-/*! ANIMATIONS */
+/* ANIMATIONS */
 
 @keyframes rise {
   0% {
